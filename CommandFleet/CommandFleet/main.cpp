@@ -124,7 +124,7 @@ int main(int argc, char** argv) // tablica tablica charów argc=5
 			break;
 		case 'e':
 			system("cls");
-			std::cout << "Mi³ego dnia!";
+			std::cout << "Have a good day!";
 			save_database(v_beg, d_beg, d_file_name, v_file_name);
 			clear(&v_beg, &d_beg, &v_end, &d_end);
 			delete gv_filter;
