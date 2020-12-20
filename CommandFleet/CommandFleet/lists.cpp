@@ -1510,12 +1510,7 @@ bool can_drive(driver* c_driver, vehicle* c_vehicle)
 	}
 	return false;
 }
-vehicle* report_filter_vehicles(vehicle** g_filter, driver* curr)
-{
-	vehicle* filter = *g_filter;
-	filter->licens = curr->licens;
-	return *g_filter;
-}
+
 void generate_report(vehicle* v_beg, driver* d_beg, vehicle* v_filter, driver* d_filter)
 {
 	driver* d_curr = d_beg;

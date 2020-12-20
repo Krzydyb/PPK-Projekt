@@ -1,6 +1,6 @@
 #include "lists.h"
 
-int main(int argc, char** argv) // tablica tablica charów argc=5
+int main(int argc, char** argv) 
 {
 	std::string v_file_name = "";
 	std::string d_file_name = "";
@@ -8,7 +8,7 @@ int main(int argc, char** argv) // tablica tablica charów argc=5
 	{
 		system("cls");
 		std::cout << "Invalid number of arguments!" << std::endl;
-		std::cout << "Usege: CommandFleet.exe -v<vehicles list> -d<drivers list>";
+		std::cout << "Usege: CommandFleet.exe -v <vehicles list> -d <drivers list>";
 		return -1;
 	}
 	for (int i = 1; i < argc; i++)
@@ -18,22 +18,22 @@ int main(int argc, char** argv) // tablica tablica charów argc=5
 			if (i == argc-1)
 			{
 				system("cls");
-				std::cout << "Invalid number of arguments!" << std::endl;
-				std::cout << "Usege: CommandFleet.exe -v<vehicles list> -d<drivers list>";
+				std::cout << "Invalid flags!" << std::endl;
+				std::cout << "Usege: CommandFleet.exe -v <vehicles list> -d <drivers list>";
 				return -1;
 			}
 			v_file_name = argv[i+1];
 		}
 		if (!strcmp(argv[i], "-k"))
 		{
-			if (i == argc - 1)
+			if (i == argc-1)
 			{
 				system("cls");
-				std::cout << "Invalid number of arguments!" << std::endl;
-				std::cout << "Usege: FleetDatabase.exe -v<vehicles list> -d<drivers list>";
+				std::cout << "Invalid flags!" << std::endl;
+				std::cout << "Usege: FleetDatabase.exe -v <vehicles list> -d <drivers list>";
 				return -1;
 			}
-			d_file_name = argv[i + 1];
+			d_file_name = argv[i+1];
 		}
 	}
 	std::string trash;
@@ -45,6 +45,7 @@ int main(int argc, char** argv) // tablica tablica charów argc=5
 	driver* d_end = nullptr;
 	driver* d_tmp = new driver;
 	driver* gd_filter = new driver;
+	char choice = ' ';
 	bool loaded_v = load_vehicle_list(v_file_name, &v_beg, &v_end);
 	if (loaded_v == false)
 	{
@@ -61,7 +62,6 @@ int main(int argc, char** argv) // tablica tablica charów argc=5
 		std::cout << "Remember to write file name with extention.txt";
 		return -1;
 	}
-	char choice = ' ';
 	while (choice != 'e')
 	{
 		system("cls");
@@ -141,5 +141,4 @@ int main(int argc, char** argv) // tablica tablica charów argc=5
 		}
 		system("cls");
 	}
-
 }
