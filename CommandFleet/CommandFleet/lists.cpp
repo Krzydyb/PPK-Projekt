@@ -42,11 +42,12 @@ void delete_vehicle(vehicle** beg, vehicle** end)
 	{
 		std::cout << "Plese fill in all cells" << std::endl;
 		delete to_delete_data;
-		system("pasue");
+		system("pause");
 		return;
 	}
 	if (*beg == nullptr)
 	{
+		delete to_delete_data;
 		return;
 	}
 	if (vehicle_display_flag(to_delete, to_delete_data))
@@ -68,12 +69,12 @@ void delete_vehicle(vehicle** beg, vehicle** end)
 	while (!vehicle_display_flag(to_delete->next, to_delete_data))
 	{
 		to_delete = to_delete->next;
-		if (to_delete == nullptr)
+		if (to_delete->next == nullptr)
 		{
-			delete to_delete_data;
 			system("cls");
-			std::cout << "Behicle you want to delete, don't exist!" << std::endl;
-			system("pasue");
+			std::cout << "Vehicle you want to delete, don't exist!" << std::endl;
+			delete to_delete_data;
+			system("pause");
 			return;
 		}
 	}
@@ -81,18 +82,20 @@ void delete_vehicle(vehicle** beg, vehicle** end)
 	to_delete = to_delete->next;
 	vehicle* to_delete_next = to_delete->next;
 	delete to_delete;
-	delete to_delete_data;
 	to_delete_prev->next = to_delete_next;
 	if (to_delete_prev->next == nullptr)
 	{
 		*end = to_delete_prev;
+		delete to_delete_data;
 		return;
 	}
 	else
 	{
 		*end = to_delete_prev->next;
+		delete to_delete_data;
 		return;
 	}
+	
 }
 
 bool load_vehicle_list(std::string name, vehicle** beg, vehicle** end)
@@ -624,92 +627,95 @@ vehicle* sort_vehicles(vehicle* base)
 	vehicle* base_next = base->next;
 	std::string trash;
 	system("cls");
-	int tmp;
+	char tmp;
 	std::cout << "[1]Incrising" << std::endl;
 	std::cout << "[2]Decrising" << std::endl;
 	std::cin >> tmp;
 	std:getline(std::cin, trash);
-	int choice = sort_vehicles_by();
-	if (choice == 1)
+	if (tmp != '1' && tmp != '2')
 	{
-		if (tmp == 1)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_Type_i(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-		if (tmp == 2)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_Type_d(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-	}
-	if (choice == 2)
-	{
-		if (tmp == 1)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_Brand_i(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-		if (tmp == 2)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_Brand_d(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-	}
-	if (choice == 3)
-	{
-		if (tmp == 1)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_Model_i(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-		if (tmp == 2)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_Model_d(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-	}
-	if (choice == 4)
-	{
-		if (tmp == 1)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_licens_i(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-		if (tmp == 2)
-		{
-			while (base_next != nullptr)
-			{
-				find_place_by_licens_d(&sorted_list, base_next);
-				base_next = base_next->next;
-			}
-		}
-	}
-	if (choice == 0)
-	{
-		system("cls");
+
 		return nullptr;
+	}
+	int choice = sort_vehicles_by();
+	switch (choice)
+	{
+		case 1:
+			if (tmp == '1')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_Type_i(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+			if (tmp == '2')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_Type_d(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+			break;
+		case 2:
+			if (tmp == '1')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_Brand_i(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+			if (tmp == '2')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_Brand_d(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+		break;
+		case 3:
+			if (tmp == '1')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_Model_i(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+			if (tmp == '2')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_Model_d(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+		break;
+		case 4:
+			if (tmp == '1')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_licens_i(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+			if (tmp == '2')
+			{
+				while (base_next != nullptr)
+				{
+					find_place_by_licens_d(&sorted_list, base_next);
+					base_next = base_next->next;
+				}
+			}
+		break;
+		case 0:
+			system("cls");
+			return nullptr;
+		break;
 	}
 	return sorted_list;
 }
@@ -720,7 +726,7 @@ void show_filtred_vehicle_list(vehicle* beg, vehicle* filter)
 	vehicle* tmp_curr;
 	char choice = ' ';
 	std::string trash;
-	while ((choice != '1') || (choice != '2') || (choice != 'e'))
+	while (choice != '1' || choice != '2' || choice != 'e')
 	{
 		curr = beg;
 		system("cls");
@@ -750,7 +756,8 @@ void show_filtred_vehicle_list(vehicle* beg, vehicle* filter)
 			if (curr == nullptr)
 			{
 				std::cout << "Insert valid option number" << std::endl;
-					return;
+				system("pasue");
+				return;
 			}
 			tmp_curr = curr;
 			while (curr != nullptr)
@@ -777,7 +784,6 @@ void show_filtred_vehicle_list(vehicle* beg, vehicle* filter)
 		}
 		system("cls");
 	}
-
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 driver* crate_driver_list(driver** beg)
@@ -820,7 +826,7 @@ void delete_driver(driver** beg, driver** end)
 	if (to_delete_data->name == "" || to_delete_data->surrname == "" || to_delete_data->licens == "")
 	{
 		std::cout << "Plese fill in all cells" << std::endl;
-		system("pasue");
+		system("pause");
 		return;
 	}
 	if (*beg == nullptr)
@@ -846,8 +852,8 @@ void delete_driver(driver** beg, driver** end)
 		to_delete = to_delete->next;
 		if (to_delete->next == nullptr)
 		{
-			std::cout << "driver you want to delete, don't exist!" << std::endl;
-			system("pasue");
+			std::cout << "Driver you want to delete, don't exist!" << std::endl;
+			system("pause");
 			return;
 		}
 	}
@@ -1019,7 +1025,7 @@ int sort_drivers_by()
 			break;
 		default:
 			system("cls");
-			std::cout << "Invalid flag";
+			std::cout << "Invalid flag" << std::endl;
 			system("pause");
 			break;
 		}
@@ -1255,15 +1261,20 @@ driver* sort_drivers(driver* base)
 	driver* base_next = base->next;
 	std::string trash;
 	system("cls");
-	int tmp;
+	char tmp;
 	std::cout << "[1]Incrising" << std::endl;
 	std::cout << "[2]Decrising" << std::endl;
 	std::cin >> tmp;
 	std:getline(std::cin, trash);
-	int choice = sort_drivers_by();
-	if (choice == 1)
+	if (tmp != '1' && tmp != '2')
 	{
-		if (tmp == 1)
+		return nullptr;
+	}
+	int choice = sort_drivers_by();
+	switch (choice)
+	{
+	case 1:
+		if (tmp == '1')
 		{
 			while (base_next != nullptr)
 			{
@@ -1271,7 +1282,7 @@ driver* sort_drivers(driver* base)
 				base_next = base_next->next;
 			}
 		}
-		if (tmp == 2)
+		if (tmp == '2')
 		{
 			while (base_next != nullptr)
 			{
@@ -1279,10 +1290,9 @@ driver* sort_drivers(driver* base)
 				base_next = base_next->next;
 			}
 		}
-	}
-	if (choice == 2)
-	{
-		if (tmp == 1)
+		break;
+	case 2:
+		if (tmp == '1')
 		{
 			while (base_next != nullptr)
 			{
@@ -1290,7 +1300,7 @@ driver* sort_drivers(driver* base)
 				base_next = base_next->next;
 			}
 		}
-		if (tmp == 2)
+		if (tmp == '2')
 		{
 			while (base_next != nullptr)
 			{
@@ -1298,10 +1308,9 @@ driver* sort_drivers(driver* base)
 				base_next = base_next->next;
 			}
 		}
-	}
-	if (choice == 3)
-	{
-		if (tmp == 1)
+		break;
+	case 3:
+		if (tmp == '1')
 		{
 			while (base_next != nullptr)
 			{
@@ -1309,7 +1318,7 @@ driver* sort_drivers(driver* base)
 				base_next = base_next->next;
 			}
 		}
-		if (tmp == 2)
+		if (tmp == '2')
 		{
 			while (base_next != nullptr)
 			{
@@ -1317,10 +1326,10 @@ driver* sort_drivers(driver* base)
 				base_next = base_next->next;
 			}
 		}
-	}
-	if (choice == 0)
-	{
+		break;
+	case 0:
 		return nullptr;
+		break;
 	}
 	return sorted_list;
 }
@@ -1330,6 +1339,7 @@ void show_filtred_drivers_list(driver* beg, driver* filter)
 	driver* curr;
 	driver* tmp_curr;
 	char choice = ' ';
+	std::string trash;
 	while ((choice != '1') || (choice != '2') || (choice != 'e'))
 	{
 		curr = beg;
@@ -1339,6 +1349,7 @@ void show_filtred_drivers_list(driver* beg, driver* filter)
 		std::cout << "[2]Sort and show" << std::endl;
 		std::cout << "[e]exit" << std::endl;
 		std::cin >> choice;
+		std::getline(std::cin, trash);
 		switch (choice)
 		{
 		case '1':
@@ -1359,6 +1370,7 @@ void show_filtred_drivers_list(driver* beg, driver* filter)
 			if (curr == nullptr)
 			{
 				std::cout << "Insert valid option number" << std::endl;
+				system("pasue");
 				return;
 			}
 			tmp_curr = curr;

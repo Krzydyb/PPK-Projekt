@@ -103,24 +103,22 @@ int main(int argc, char** argv)
 		case '5':
 			system("cls");
 			show_filtred_vehicle_list(v_beg, gv_filter);
-			system("pause");
 			break;
 		case '6':
-			std::cin.clear();
+			system("cls");
 			filter_vehicles(&gv_filter);
 			break;
 		case '7':
 			system("cls");
 			show_filtred_drivers_list(d_beg, gd_filter);
-			system("pause");
 			break;
 		case '8':
+			system("cls");
 			filter_drivers(&gd_filter);
 			break;
 		case '9':
 			system("cls");
 			generate_report(v_beg, d_beg, gv_filter, gd_filter);
-			system("pause");
 			break;
 		case 'e':
 			system("cls");
@@ -136,7 +134,7 @@ int main(int argc, char** argv)
 		default:
 			system("cls");
 			std::cout << "Invalid flag, plese choose number from menu" << std::endl;
-			system("Pause");
+			system("pause");
 			break;
 		}
 		system("cls");

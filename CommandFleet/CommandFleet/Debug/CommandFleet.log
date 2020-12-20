@@ -1,6 +1,4 @@
 ﻿  lists.cpp
-C:\Users\Jan\Documents\GitHub\PPK-Projekt\CommandFleet\CommandFleet\lists.cpp(631,5): warning C4102: "std": etykieta, do której nie istnieje odwołanie
-C:\Users\Jan\Documents\GitHub\PPK-Projekt\CommandFleet\CommandFleet\lists.cpp(1262,5): warning C4102: "std": etykieta, do której nie istnieje odwołanie
-  main.cpp
-  Generowanie kodu...
+C:\Users\Jan\Documents\GitHub\PPK-Projekt\CommandFleet\CommandFleet\lists.cpp(634,5): warning C4102: "std": etykieta, do której nie istnieje odwołanie
+C:\Users\Jan\Documents\GitHub\PPK-Projekt\CommandFleet\CommandFleet\lists.cpp(1268,5): warning C4102: "std": etykieta, do której nie istnieje odwołanie
   CommandFleet.vcxproj -> C:\Users\Jan\Documents\GitHub\PPK-Projekt\CommandFleet\Debug\CommandFleet.exe
